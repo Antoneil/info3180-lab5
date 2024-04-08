@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1 class="page-header">File Upload</h1>
+
+{% include 'flash_messages.html' %}
+
+<form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  
+  <div class="form-group">
+    {{ form.title.label(class="control-label") }}
+    {{ form.title(class="form-control") }}
+  </div>
+  
+  <div class="form-group">
+    {{ form.description.label(class="control-label") }}
+    {{ form.description(class="form-control") }}
+  </div>
+
+  <div class="form-group">
+    {{ form.poster.label(class="control-label") }}
+    {{ form.poster(class="form-control") }}
+  </div>
+
+  <button type="submit" name="submit" class="btn btn-primary">Upload</button>
+</form>
+{% endblock %}

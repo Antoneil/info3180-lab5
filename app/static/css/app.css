@@ -1,0 +1,38 @@
+body {
+    padding-top: 5rem;
+}
+
+.form-login {
+    max-width: 330px;
+    padding: 15px;
+}
+
+.form-login input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-login input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.image-item {
+  flex-basis: calc(33.33% - 20px); 
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.image-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover; 
+}
