@@ -8,3 +8,10 @@ class Movie(db.Model):
     poster = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
+    def __init__(self, title, description, poster):
+        self.title = title
+        self.description = description
+        self.poster = poster
+
+    def __repr__(self):
+        return f"Movie('{self.title}', '{self.poster}')"

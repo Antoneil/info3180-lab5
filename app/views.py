@@ -22,24 +22,9 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-def get_uploaded_images():
-    rootdir = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
-    uploaded_images = []
-
-    for subdir, dirs, files in os.walk(rootdir):
-        for file in files:
-            uploaded_images.append(file)
-
-    return uploaded_images
-
-upload_folder = app.config['UPLOAD_FOLDER']
-if not os.path.exists(upload_folder):
-    os.makedirs(upload_folder)
-
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     form = MovieForm()
-
     # Validate file upload on submit
     if form.validate_on_submit():
         # Get file data and save to your uploads folder
@@ -61,12 +46,25 @@ def get_image(filename):
     uploads_folder = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
     return send_from_directory(uploads_folder, filename)
 
+def get_uploaded_images():
+    rootdir = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
+    uploaded_images = []
+
+    for subdir, dirs, files in os.walk(rootdir):
+        for file in files:
+            uploaded_images.append(file)
+
+    return uploaded_images
+
+upload_folder = app.config['UPLOAD_FOLDER']
+if not os.path.exists(upload_folder):
+    os.makedirs(upload_folder)
 
 @app.route('/movies')
 def get_movies():
     all_movies = Movie.query.all()  # Retrieve all movies from the database
     return render_template('movies.html', movies=all_movies)
-
+    
     return jsonify(movie_data)  # Return movie data in JSON format
 
 # Route for serving static text file
